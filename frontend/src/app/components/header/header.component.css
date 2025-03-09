@@ -1,0 +1,13 @@
+nav .nav-item{
+  padding: 2px;
+  font-size: large;
+  font-weight: bold;
+}
+
+nav a {
+  color: rebeccapurple;
+}
+
+.active {
+  color: mediumpurple !important;
+}

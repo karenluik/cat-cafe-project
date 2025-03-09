@@ -1,0 +1,57 @@
+.hero {
+  min-height: 50vh;
+  width: 100%;
+  padding: 0;
+  color: rebeccapurple;
+}
+
+h2 {
+  color: rebeccapurple;
+  font-weight: bold;
+}
+
+.about {
+  min-height: 25vh;
+}
+.more {
+  min-height: 25vh;
+}
+
+h1 {
+  padding-top: 100px;
+}
+
+
+
+.neonText {
+  animation: flicker 1.5s infinite alternate;
+  color: #fff;
+}
+
+h1 {
+  font-size: 4.2rem;
+}
+
+/* Flickering animation */
+@keyframes flicker {
+
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+
+    text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #674ea7,
+      0 0 80px #674ea7,
+      0 0 90px #674ea7,
+      0 0 100px #674ea7,
+      0 0 150px #674ea7;
+
+  }
+
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+
