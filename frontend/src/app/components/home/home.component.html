@@ -1,22 +1,22 @@
-<div class="container-fluid">
-  <div class="px-4 py-5 text-center hero">
-
-    <h1 class="display-5 fw-bold neonText">WELCOME TO KAT CAFÉ</h1>
-    <img class="d-block mx-auto mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <div class="col-lg-6 mx-auto">
-      <p class="lead mb-4">We are happy you have found us.</p>
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn-outline-secondary btn-lg px-4 gap-3" routerLink="bookings">Book</button>
+<div class="hero-section text-center py-5" style="background-color: var(--pastel-blue);">
+  <h1 class="display-4 hero-text" style="color: var(--pastel-purple);"><span style=" background-color: var(--pastel-orange);"> Welcome to Kat Café </span></h1>
+  <p class="lead hero-subtext" style=" color: var(--pastel-pink);">Book  <span style="background-color: var(--pastel-yellow);"> right meow </span> for a wonderful time.</p>
+  <button class="btn btn-pastel hero-subtext" (click)="scrollTo('about')">Learn More</button>
+</div>
+<div class="about-us py-5" id="about" >
+  <div class="container inner-div" style="background-color: var(--pastel-blue);" id="animatedDiv">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-md-6">
+          <h1 style=" color: var(--pastel-purple);" class="text-center text-decoration-underline">About Us</h1>
+          <p style="color: var(--pastel-purple);" class="text-center">
+            We are a small café that started out as a way to gather some money to take care of the kitties.
+            Now we are <span style="color: var(--pastel-pink)">PROUD</span> to say that we have <span style="color: var(--pastel-pink)">over 100</span> kitties be adopted from
+            our café.
+          </p>
+      </div>
+      <div class="col-md-6">
+        <img src="assets/images/surprised_cat.png" alt="cat" class="img-fluid rounded goofy-image">
       </div>
     </div>
   </div>
-  <div class="about">
-    <h2 class="text-center">About Us</h2>
-  </div>
-  <div class="more">
-    <h2 class="text-center">More info</h2>
-  </div>
 </div>
-
-
-

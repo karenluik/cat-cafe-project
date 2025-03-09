@@ -1,5 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
-@font-face {
-  font-family: 'Poppins';
-  src: url('./assets/Poppins.ttf');
+h1, h2,p,a{
+  font-family: 'Courier New', Courier, monospace;
 }
+
+:root {
+  --pastel-purple: #B49FDC;
+  --pastel-blue: #C5EBFE;
+  --pastel-yellow: #FEFD97;
+  --pastel-green: #A5F8CE;
+  --pastel-orange: #FEC9A7;
+  --pastel-pink: #F197CD;
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+  color: var(--pastel-purple);
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+.footer{
+  border: 1px black solid;
+}
+
+fa-icon {
+  font-size: x-large;
+}
+
+
+fa-icon:hover {
+  cursor: pointer;
+}
+
+
+footer {
+  background-color: var(--pastel-yellow);
+  color: var(--pastel-purple);
+}
