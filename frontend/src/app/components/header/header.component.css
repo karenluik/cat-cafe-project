@@ -1,12 +1,17 @@
-nav .nav-item{
+nav  .nav-item{
   padding: 2px;
   font-size: x-large;
   font-weight: bold;
 
 }
+.navbar-toggler{
+  border: 1px black solid;
+}
 
 nav a {
   color: rebeccapurple;
+  font-size: x-large;
+  font-weight: bold;
 }
 
 .active {

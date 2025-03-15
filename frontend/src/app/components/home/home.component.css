@@ -1,26 +1,33 @@
 .btn-pastel {
   background-color: var(--pastel-yellow);
   color: var(--pastel-purple);
-  border: none;
+  border: 2px black solid;
+  box-shadow: 0.5rem 0.5rem #B49FDC, -0.5rem -0.5rem #FEC9A7;
   padding: 10px 20px;
   font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: large;
+  transition-duration: .4s;
 }
 
 .btn-pastel:hover {
   background-color: var(--pastel-pink);
   color: white;
+  box-shadow: 0.5rem 0.5rem #FEFD97 , -0.5rem -0.5rem #B49FDC;
+  transition-duration: .4s;
 }
 
-* {
-  min-height: 20vh;
-}
 
 .hero-section {
   background-color: var(--pastel-blue);
+  min-height: 50vh;
 }
 
 .about-us {
+  min-height: 30vh;
   background: url("https://static.vecteezy.com/system/resources/previews/012/251/413/non_2x/psychedelic-y2k-background-2000-illustration-in-retro-aesthetic-1990-style-vector.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 p {
@@ -30,6 +37,7 @@ p {
 
 h1{
   font-weight: bold;
+  padding-bottom: 50px;
 }
 
  .hero-section, .about-us {
@@ -107,3 +115,23 @@ h1{
 .hero-subtext {
   animation-delay: 0.5s;
 }
+
+.cat-gif {
+  position: absolute;
+  padding-top: 15vh;
+  left: 0;
+  width: 100px;
+  height: auto;
+  animation: run 10s linear infinite;
+}
+
+@keyframes run {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+
