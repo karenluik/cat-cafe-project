@@ -27,9 +27,9 @@ Tendrás que actualizarlo dependiendo de tu ordenador
 
 NestJS estará ejecutandose en  http://localhost:3000.
 
-🎨 Frontend (Angular)
+## 🎨 Frontend (Angular)
 
-1️⃣ Instalar Dependencies
+### 1️⃣ Instalar Dependencies
 > cd frontend
 > npm install
 
