@@ -1,6 +1,6 @@
 # 🐱 Kat Café 
 
-Este es un proyecto **API NestJS** con **Prisma + MySQL** y **frontend en Angular **.  
+Este es un proyecto **API NestJS** con **Prisma + MySQL** y **frontend en Angular**.  
 Permite al usuario crear una cuenta, loguearse y hacer reservas en el cat café.
 
 
