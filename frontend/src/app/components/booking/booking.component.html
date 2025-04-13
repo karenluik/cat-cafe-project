@@ -1,2 +1,44 @@
-<div class="card-title">hello</div>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>My Bookings</h2>
+    <button class="btn btn-primary" (click)="showAddForm()" *ngIf="authService.isLoggedIn()">
+      <i class="bi bi-plus"></i> Add Booking
+    </button>
+  </div>
 
+  <div *ngIf="showForm" class="mb-4">
+    <app-booking-form
+      [packages]="packages"
+      [booking]="currentBooking"
+      (submit)="onFormSubmit()"
+      (cancel)="showForm = false">
+    </app-booking-form>
+  </div>
+
+  <div *ngIf="bookings.length === 0 && !showForm" class="alert alert-info">
+    You have no bookings yet.
+  </div>
+
+  <div class="row">
+    <div *ngFor="let booking of bookings" class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ getPackageName(booking.packageId) }}</h5>
+          <p class="card-text">
+            <strong>Date:</strong> {{ booking.bookingDate | date:'mediumDate' }}<br>
+            <strong>Time:</strong> {{ booking.bookingTime }}<br>
+            <strong>Price:</strong> ${{ getPackagePrice(booking.packageId) }}
+          </p>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-sm btn-warning" (click)="showEditForm(booking)">
+              <i class="bi bi-pencil"></i> Edit
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="deleteBooking(booking.id!)">
+              <i class="bi bi-trash"></i> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

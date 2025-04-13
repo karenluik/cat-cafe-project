@@ -2,6 +2,7 @@ import {Component, inject} from '@angular/core';
 import {CatsService} from "../../services/cats.service";
 import {Cats} from "../../common/interfaces";
 
+
 @Component({
   selector: 'app-cats',
   standalone: true,
@@ -31,4 +32,9 @@ constructor() {
       }
     })
   }
+
+
+
+
+
 }
