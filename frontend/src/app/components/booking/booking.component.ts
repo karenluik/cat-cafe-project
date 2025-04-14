@@ -4,8 +4,10 @@ import { PackageService } from '../../services/package.service';
 import { AuthService } from '../../services/auth.service';
 import { Booking } from '../../common/interfaces';
 import { Package } from '../../common/interfaces';
-import {BookingFormComponent} from "../booking-form/booking-form.component";
-import {DatePipe, NgForOf, NgIf} from "@angular/common";
+import { BookingFormComponent } from "../booking-form/booking-form.component";
+import { DatePipe, NgForOf, NgIf } from "@angular/common";
+import {FaIconComponent} from "@fortawesome/angular-fontawesome";
+import {faPenToSquare, faSmile, faTrashCan} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-booking',
@@ -15,12 +17,14 @@ import {DatePipe, NgForOf, NgIf} from "@angular/common";
     BookingFormComponent,
     DatePipe,
     NgForOf,
-    NgIf
+    NgIf,
+    FaIconComponent
   ],
   styleUrls: ['./booking.component.css']
 })
 export class BookingComponent implements OnInit {
   bookings: Booking[] = [];
+  displayBookings: any[] = []; // New property for formatted bookings
   packages: Package[] = [];
   showForm = false;
   currentBooking?: Booking;
@@ -38,11 +42,31 @@ export class BookingComponent implements OnInit {
 
   loadBookings(): void {
     this.bookingService.getBookings().subscribe({
-      next: (data) => this.bookings = data,
+      next: (data) => {
+        this.bookings = data; // Keep original data
+        this.displayBookings = this.formatBookingsForDisplay(data); // Create formatted version
+      },
       error: (err) => console.error('Error loading bookings', err)
     });
   }
 
+  // New formatting function
+  private formatBookingsForDisplay(bookings: Booking[]): any[] {
+    return bookings.map(booking => {
+      const date = new Date(booking.booking_date);
+      return {
+        ...booking,
+        display_date: date.toLocaleDateString('en-US'), // e.g. "4/14/2025"
+        display_time: date.toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true
+        }) // e.g. "04:00 PM"
+      };
+    });
+  }
+
+  // Rest of your existing methods remain unchanged...
   loadPackages(): void {
     this.packageService.getPackages().subscribe({
       next: (data) => this.packages = data,
@@ -83,4 +107,8 @@ export class BookingComponent implements OnInit {
     const pkg = this.packages.find(p => p.id === packageId);
     return pkg?.price || 0;
   }
+
+  protected readonly faSmile = faSmile;
+  protected readonly faPenToSquare = faPenToSquare;
+  protected readonly faTrashCan = faTrashCan;
 }

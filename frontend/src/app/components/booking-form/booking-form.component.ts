@@ -4,6 +4,7 @@ import { Package } from '../../common/interfaces';
 import { BookingService } from '../../services/booking.service';
 import {FormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-booking-form',
@@ -23,14 +24,14 @@ export class BookingFormComponent {
   @Output() cancel = new EventEmitter<void>();
 
   model: Partial<Booking> = {
-    packageId: undefined,
-    bookingDate: '',
-    bookingTime: ''
+    package_id: undefined,
+    booking_date: '',
+    booking_time: ''
   };
   availableSlots: string[] = [];
   selectedDate: string = '';
 
-  constructor(private bookingService: BookingService) {
+  constructor(private bookingService: BookingService, private authService: AuthService) {
     if (this.booking) {
       this.model = { ...this.booking };
     }
@@ -42,16 +43,23 @@ export class BookingFormComponent {
   }
 
   onSubmit() {
-    if (this.model.packageId && this.model.bookingDate && this.model.bookingTime) {
-      const bookingData: Booking = {
-        userId: 1, // In real app, get from auth service
-        packageId: this.model.packageId,
-        bookingDate: this.model.bookingDate,
-        bookingTime: this.model.bookingTime
+    if (this.model.package_id && this.model.booking_date && this.model.booking_time) {
+      const bookingData : Booking = {
+        user_id: this.authService.getUserId() || 0  ,
+        package_id: Number(this.model.package_id!),
+        booking_date: this.model.booking_date,
+        booking_time: this.model.booking_time || ''
       };
+      console.log('Sending booking data:', bookingData);
 
-// Here you would call the service to create/update booking
-      this.submit.emit();
+      this.bookingService.createBooking(bookingData).subscribe({
+        next: () => {
+          this.submit.emit();
+        },
+        error: (err) => {
+          console.error('Failed to create booking', err);
+        }
+      });
     }
   }
 

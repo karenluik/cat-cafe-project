@@ -8,10 +8,10 @@ export interface Cats {
 
 export interface Booking {
   id?: number;
-  userId: number;
-  packageId: number;
-  bookingDate: string; // ISO format date string
-  bookingTime: string;
+  user_id: number;
+  package_id: number;
+  booking_date: string;
+  booking_time: string;
 }
 
 

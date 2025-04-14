@@ -5,7 +5,7 @@
     <form (ngSubmit)="onSubmit()">
       <div class="mb-3">
         <label class="form-label">Package</label>
-        <select class="form-select" [(ngModel)]="model.packageId" name="packageId" required>
+        <select class="form-select" [(ngModel)]="model.package_id" name="packageId" required>
           <option value="" disabled selected>Select a package</option>
           <option *ngFor="let pkg of packages" [value]="pkg.id">
             {{ pkg.name }} - ${{ pkg.price }}
@@ -17,9 +17,9 @@
         <label class="form-label">Date</label>
         <input type="date" class="form-control"
                [min]="getTodayDate()"
-               [(ngModel)]="model.bookingDate"
+               [(ngModel)]="model.booking_date"
                name="bookingDate"
-               (change)="onDateChange(model.bookingDate || '')"
+               (change)="onDateChange(model.booking_date || '')"
                required>
       </div>
 
@@ -29,8 +29,8 @@
           <button *ngFor="let slot of availableSlots"
                   type="button"
                   class="btn btn-outline-primary m-1"
-                  [class.active]="model.bookingTime === slot"
-                  (click)="model.bookingTime = slot">
+                  [class.active]="model.booking_time === slot"
+                  (click)="model.booking_time = slot">
             {{ slot }}
           </button>
         </div>
@@ -38,7 +38,7 @@
 
       <div class="d-flex justify-content-end gap-2">
         <button type="button" class="btn btn-secondary" (click)="cancel.emit()">Cancel</button>
-        <button type="submit" class="btn btn-primary" [disabled]="!model.bookingTime">Submit</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!model.booking_time">Submit</button>
       </div>
     </form>
   </div>

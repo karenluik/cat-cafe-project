@@ -1,14 +1,15 @@
 .btn-pastel {
   background-color: var(--pastel-yellow);
   color: var(--pastel-purple);
-  border: none;
   padding: 10px 20px;
   font-family: 'Courier New', Courier, monospace;
+  border:2px black solid;
 }
 
 .btn-pastel:hover {
   background-color: var(--pastel-pink);
   color: white;
+  border: 2px black solid;
 }
 
 * {
