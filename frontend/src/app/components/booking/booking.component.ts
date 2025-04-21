@@ -108,7 +108,7 @@ export class BookingComponent implements OnInit {
     return pkg?.price || 0;
   }
 
-  protected readonly faSmile = faSmile;
+  
   protected readonly faPenToSquare = faPenToSquare;
   protected readonly faTrashCan = faTrashCan;
 }
