@@ -53,32 +53,38 @@ export class BookingFormComponent implements OnChanges {
       const user = this.authService.getUser();  // Get the logged-in user info from auth service
       const user_id = user?.id;  // Extract the user_id from the user object
 
-      // Ensure that user_id is added to the data you're passing to the backend
-      const bookingData: CreateBookingDto & { user_id: number } = {
-        user_id: user_id,  // Add user_id here
+      // Prepare the data to send to the backend
+      let bookingData: CreateBookingDto = {
         package_id: Number(this.model.package_id),
         booking_date: this.model.booking_date,
-        booking_time: this.model.booking_time || ''  // Ensure booking_time is a string
+        booking_time: this.model.booking_time || '',  // Ensure booking_time is a string
+        user_id: user_id as number // Ensure user_id is set correctly as a number
       };
 
       // Check if we are updating an existing booking
       if (this.model.id) {
-        // For updating an existing booking
-        this.bookingService.updateBooking(this.model.id, bookingData).subscribe({
+        // For updating an existing booking: exclude user_id from update request
+        const updateData: Partial<CreateBookingDto> = {
+          package_id: Number(this.model.package_id),
+          booking_date: this.model.booking_date,
+          booking_time: this.model.booking_time || ''  // Ensure booking_time is a string
+        };
+
+        this.bookingService.updateBooking(this.model.id, updateData).subscribe({
           next: (updatedBooking) => {
             console.log('Booking updated successfully:', updatedBooking);
-            this.submit.emit(updatedBooking);
+            this.submit.emit(updatedBooking); // Emit the updated booking
           },
           error: (err) => {
             console.error('Failed to update booking', err);
           }
         });
       } else {
-        // For creating a new booking
+        // For creating a new booking: include user_id in the request
         this.bookingService.createBooking(bookingData).subscribe({
           next: (createdBooking) => {
             console.log('Booking created successfully:', createdBooking);
-            this.submit.emit(createdBooking); // Emit new booking
+            this.submit.emit(createdBooking); // Emit the newly created booking
           },
           error: (err) => {
             console.error('Failed to create booking', err);
@@ -87,6 +93,9 @@ export class BookingFormComponent implements OnChanges {
       }
     }
   }
+
+
+
 
   getTodayDate(): string {
     return new Date().toISOString().split('T')[0];
