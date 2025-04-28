@@ -5,9 +5,10 @@
 
   <div *ngIf="showForm" class="mb-4">
     <app-booking-form
+      *ngIf="showForm"
       [packages]="packages"
       [booking]="currentBooking"
-      (submit)="onFormSubmit()"
+      (submit)="onFormSubmit($event)"
       (cancel)="showForm = false">
     </app-booking-form>
   </div>

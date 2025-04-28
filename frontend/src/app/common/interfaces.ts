@@ -21,3 +21,11 @@ export interface Package {
   description: string;
   price: number;
 }
+
+
+export interface CreateBookingDto {
+  user_id : number;
+  package_id: number;
+  booking_date: string;
+  booking_time: string;
+}
