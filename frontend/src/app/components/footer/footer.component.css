@@ -3,7 +3,7 @@
 }
 
 fa-icon {
-  font-size: x-large;
+  font-size: small;
 }
 
 
@@ -15,4 +15,10 @@ fa-icon:hover {
 footer {
   background-color: var(--pastel-yellow);
   color: var(--pastel-purple);
+}
+
+
+p{
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
 }

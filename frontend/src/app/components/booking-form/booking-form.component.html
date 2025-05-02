@@ -1,11 +1,11 @@
-<div class="card mb-4">
+<div class="card mb-4 retro-card-alt">
   <div class="card-body">
-    <h5 class="card-title">{{ booking ? 'Edit Booking' : 'New Booking' }}</h5>
+    <h5 class="card-title retro-title text-center">{{ booking ? 'Edit Booking' : 'New Booking' }}</h5>
 
     <form (ngSubmit)="onSubmit()">
       <div class="mb-3">
         <label class="form-label">Package</label>
-        <select class="form-select" [(ngModel)]="model.package_id" name="packageId" required>
+        <select class="form-select retro-input" [(ngModel)]="model.package_id" name="packageId" required>
           <option value="" disabled selected>Select a package</option>
           <option *ngFor="let pkg of packages" [value]="pkg.id">
             {{ pkg.name }} - ${{ pkg.price }}
@@ -15,7 +15,7 @@
 
       <div class="mb-3">
         <label class="form-label">Date</label>
-        <input type="date" class="form-control"
+        <input type="date" class="form-control retro-input"
                [min]="getTodayDate()"
                [(ngModel)]="model.booking_date"
                name="bookingDate"
@@ -28,8 +28,8 @@
         <div class="btn-group d-flex flex-wrap" role="group">
           <button *ngFor="let slot of availableSlots"
                   type="button"
-                  class="btn btn-outline-primary m-1"
-                  [class.active]="model.booking_time === slot"
+                  class="btn btn-slot m-1"
+                  [class.slot-active]="model.booking_time === slot"
                   (click)="model.booking_time = slot">
             {{ slot }}
           </button>
@@ -37,8 +37,8 @@
       </div>
 
       <div class="d-flex justify-content-end gap-2">
-        <button type="button" class="btn btn-secondary" (click)="cancel.emit()">Cancel</button>
-        <button type="submit" class="btn btn-primary" [disabled]="!model.booking_time">Submit</button>
+        <button type="button" class="btn btn-secondary retro-btn-cancel" (click)="cancel.emit()">Cancel</button>
+        <button type="submit" class="btn btn-primary btn-pastel-alt" [disabled]="!model.booking_time">Submit</button>
       </div>
     </form>
   </div>

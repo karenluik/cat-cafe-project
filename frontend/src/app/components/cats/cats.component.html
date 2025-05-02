@@ -1,22 +1,16 @@
-<div class="hero-section text-center py-5" style="background-color: var(--pastel-green);">
-  <h1 class="display-4 hero-text" style="color: var(--pastel-pink);"><span style=" background-color: var(--pastel-yellow);"> Meet The Cats</span></h1>
+<div class="hero-section text-center py-5 container-fluid" style="background-color: var(--pastel-yellow);">
+  <h1 class="display-4 hero-text" style="color: var(--pastel-pink);"><span style=" background-color: var(--pastel-blue);"> Meet The Cats</span></h1>
   <div class="row">
     @for(cat of cats; track cat.id){
-      <div class="col-md-2">
-        <div class="card">
-          <div class="card-header">
-            <img src="{{cat.image_url}}" alt="cat"  class="img-card-top img-fluid">
-          </div>
-          <div class="card-title">
+      <div class="col-md-2 py-2">
+        <img src="{{cat.image_url}}" alt="cat"  class="img-card-top img-fluid mb-2">
+        <div class="card" [ngStyle]="{ 'background-color': '#e198b4', 'color':'white'}">
+          <div class="card-body" >
             {{cat.name}}
-          </div>
-          <div class="card-body">
-            {{cat.description}}
           </div>
         </div>
       </div>
     }
   </div>
-
 </div>
 

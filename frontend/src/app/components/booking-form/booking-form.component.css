@@ -1,4 +1,63 @@
-.btn-outline-primary.active {
-  background-color: #0d6efd;
+.retro-card-alt {
+  background-color: var(--pastel-yellow);
+  border: 2px dashed var(--pastel-purple);
+  box-shadow: 0 0 15px var(--pastel-blue);
+  border-radius: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 20px;
+}
+
+.retro-title {
+  color: var(--pastel-purple);
+  font-weight: bold;
+  text-shadow: 2px 2px var(--pastel-orange);
+}
+
+.retro-input {
+  background-color: var(--pastel-blue);
+  border: 2px solid var(--pastel-pink);
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 8px;
+}
+
+.retro-input:focus {
+  border-color: var(--pastel-green);
+  box-shadow: 0 0 5px var(--pastel-green);
+}
+
+
+.btn-slot {
+  background-color: var(--pastel-green);
+  border: 2px solid var(--pastel-purple);
+  color: black;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-slot:hover {
+  background-color: var(--pastel-pink);
   color: white;
+}
+
+.slot-active {
+  background-color: var(--pastel-purple) !important;
+  color: white !important;
+  border-color: black;
+}
+
+.retro-btn-cancel {
+  background-color: var(--pastel-orange);
+  color: black;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  border: 2px solid var(--pastel-pink);
+  transition: all 0.3s ease-in-out;
+}
+
+.retro-btn-cancel:hover {
+  background-color: var(--pastel-pink);
+  color: white;
+  border-color: var(--pastel-purple);
 }

@@ -1,34 +1,54 @@
-<div class="container mt-4">
-  <h2 class="text-center mt-3">My Bookings</h2>
-    <button class="btn btn-primary btn-lg rounded btn-pastel" (click)="showAddForm()" *ngIf="authService.isLoggedIn()" >Add Booking
-    </button>
-
-  <div *ngIf="showForm" class="mb-4">
-    <app-booking-form
-      *ngIf="showForm"
-      [packages]="packages"
-      [booking]="currentBooking"
-      (submit)="onFormSubmit($event)"
-      (cancel)="showForm = false">
-    </app-booking-form>
+<div class="container-fluid py-5 booking-background">
+  <div *ngIf="showDeleteAlert" class="retro-alert-box alert alert-warning alert-dismissible fade show" role="alert">
+    Booking has been deleted!
+    <button type="button" class="btn-close" (click)="showDeleteAlert = false" aria-label="Close"></button>
   </div>
-
-  <div *ngIf="bookings.length === 0 && !showForm" class="alert alert-info">
-    You have no bookings yet.
+  <div *ngIf="showConfirmModal" class="retro-modal-overlay">
+    <div class="retro-modal card">
+      <div class="card-body text-center">
+        <h5 class="card-title mb-3">Confirm Deletion</h5>
+        <p>Are you sure you want to delete this booking?</p>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+          <button class="btn btn-danger retro-btn-delete" (click)="confirmDelete()">Delete</button>
+          <button class="btn btn-primary retro-btn-cancel" (click)="cancelDelete()">Cancel</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="row">
-    <div *ngFor="let booking of displayBookings" class="col-md-3 mb-4">
-      <div class="card text-center">
-        <div class="card-body">
-          <p class="card-title">{{ getPackageName(booking.package_id) }} Package</p>
-          <p class="card-text">
-            <strong>Date:</strong> {{ booking.display_date }}<br>
-            <strong>Time:</strong> {{ booking.display_time }}<br>
-            <strong>Price:</strong> ${{ getPackagePrice(booking.package_id) }}
-          </p>
-          <div class="d-flex justify-content-between">
-              <fa-icon [icon]="faPenToSquare" (click)="showEditForm(booking)" class="text-warning"></fa-icon>
-              <fa-icon [icon]="faTrashCan" (click)="deleteBooking(booking.id!)" class="text-danger"></fa-icon>
+  <div class="container mt-1">
+    <h1 class="text-center display-4 hero-text" style="color: var(--pastel-pink);"><span style=" background-color: var(--pastel-yellow);"> Bookings </span></h1>
+
+    <div class="d-flex justify-content-center mb-4" *ngIf="authService.isLoggedIn()">
+      <button class="btn  btn-lg btn-pastel-alt" (click)="showAddForm()">Add Booking</button>
+    </div>
+
+    <div *ngIf="showForm" class="mb-4">
+      <app-booking-form
+        [packages]="packages"
+        [booking]="currentBooking"
+        (submit)="onFormSubmit($event)"
+        (cancel)="showForm = false">
+      </app-booking-form>
+    </div>
+
+    <div *ngIf="bookings.length === 0 && !showForm" class="alert retro-alert-info text-center">
+      You have no bookings yet.
+    </div>
+
+    <div class="row">
+      <div *ngFor="let booking of displayBookings" class="col-md-4 mb-4">
+        <div class="card retro-card-alt text-center">
+          <div class="card-body">
+            <p class="card-title"><strong>{{ getPackageName(booking.package_id) }} Package</strong></p>
+            <p class="card-text">
+              <strong>Date:</strong> {{ booking.display_date }}<br>
+              <strong>Time:</strong> {{ booking.display_time }}<br>
+              <strong>Price:</strong> ${{ getPackagePrice(booking.package_id) }}
+            </p>
+            <div class="d-flex justify-content-center gap-4">
+              <fa-icon [icon]="faPenToSquare" (click)="showEditForm(booking)" class="text-warning" style="cursor:pointer;"></fa-icon>
+              <fa-icon [icon]="faTrashCan" (click)="promptDelete(booking.id!)" class="text-danger" style="cursor:pointer;"></fa-icon>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import { FormsModule } from "@angular/forms";
 import { NgIf } from "@angular/common";
 
@@ -10,7 +10,8 @@ import { NgIf } from "@angular/common";
   standalone: true,
   imports: [
     FormsModule,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   styleUrls: ['./registration.component.css']
 })
@@ -30,7 +31,7 @@ export class RegistrationComponent {
     this.authService.register(this.user).subscribe({
       next: () => {
         this.successMessage = 'Registration successful!';
-        this.router.navigate(['/login']); // Redirect to login page after registration
+        this.router.navigate(['/login']);
       },
       error: (err) => this.errorMessage = err.error.message || 'Registration failed, please try again.'
     });

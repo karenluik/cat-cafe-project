@@ -1,30 +1,41 @@
-<div class="registration-form">
-  <h2>Register</h2>
+<div class="container-fluid py-5">
+  <div class="container mt-5 retro-login">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card mb-3 retro-card">
+          <div class="card-header retro-header">
+            <h3 class="text-center">Register to Kat Café</h3>
+          </div>
+          <div class="card-body">
+            <form (ngSubmit)="onSubmit()">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control retro-input" id="name" [(ngModel)]="user.name" name="name" required>
+              </div>
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control retro-input" id="username" [(ngModel)]="user.username" name="username" required>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control retro-input" id="email" [(ngModel)]="user.email" name="email" required>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control retro-input" id="password" [(ngModel)]="user.password" name="password" required>
+              </div>
 
-  <form (ngSubmit)="onSubmit()">
-    <div>
-      <label for="name">Name</label>
-      <input type="text" id="name" [(ngModel)]="user.name" name="name" required />
+              <div *ngIf="errorMessage" class="alert alert-danger retro-alert">{{ errorMessage }}</div>
+              <div *ngIf="successMessage" class="alert alert-success retro-alert">{{ successMessage }}</div>
+
+              <div class="d-grid gap-2 d-md-flex justify-content-center">
+                <button type="submit" class="btn btn-pastel">Register</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <p class="text-center mt-3">Already have an account? Login <a routerLink="/login" class="retro-link">HERE</a></p>
+      </div>
     </div>
-
-    <div>
-      <label for="username">Username</label>
-      <input type="text" id="username" [(ngModel)]="user.username" name="username" required />
-    </div>
-
-    <div>
-      <label for="email">Email</label>
-      <input type="email" id="email" [(ngModel)]="user.email" name="email" required />
-    </div>
-
-    <div>
-      <label for="password">Password</label>
-      <input type="password" id="password" [(ngModel)]="user.password" name="password" required />
-    </div>
-
-    <button type="submit">Register</button>
-
-    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
-  </form>
+  </div>
 </div>

@@ -1,60 +1,58 @@
-.btn-pastel {
-  background-color: var(--pastel-yellow);
-  color: var(--pastel-purple);
-  padding: 10px 20px;
+
+.booking-background {
+  background-color: var(--pastel-green);
   font-family: 'Courier New', Courier, monospace;
-  border:2px black solid;
+  min-height: 100vh;
 }
 
-.btn-pastel:hover {
+
+.retro-card-alt {
+  background-color: var(--pastel-yellow);
+  border: 2px dashed var(--pastel-blue);
+  box-shadow: 0 0 15px var(--pastel-purple);
+  border-radius: 12px;
+  padding: 15px;
+  font-size: large;
+}
+
+
+.btn-pastel-alt {
+  background-color: var(--pastel-blue);
+  color: var(--pastel-purple);
+  border: 2px solid var(--pastel-purple);
+  font-weight: bold;
+  padding: 10px 24px;
+  box-shadow: 0.4rem 0.4rem var(--pastel-orange), -0.4rem -0.4rem var(--pastel-pink);
+  transition: all 0.3s ease-in-out;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.btn-pastel-alt:hover {
   background-color: var(--pastel-pink);
   color: white;
-  border: 2px black solid;
+  box-shadow: 0.4rem 0.4rem var(--pastel-purple), -0.4rem -0.4rem var(--pastel-yellow);
 }
 
-* {
-  min-height: 20vh;
-}
 
-.hero-section {
-  background-color: var(--pastel-blue);
-}
-
-.about-us {
-  background: url("https://static.vecteezy.com/system/resources/previews/012/251/413/non_2x/psychedelic-y2k-background-2000-illustration-in-retro-aesthetic-1990-style-vector.jpg");
-}
-
-p {
-  font-size: x-large;
+.retro-alert-info {
+  background-color: var(--pastel-yellow);
+  color: var(--pastel-purple);
+  border: 2px dashed var(--pastel-orange);
+  padding: 15px;
+  border-radius: 8px;
   font-weight: bold;
 }
 
-h1{
-  font-weight: bold;
-}
 
-.hero-section, .about-us {
-  border: 1px black solid;
-}
-
-.container {
-  border: 1px black solid;
-  border-radius: 20px;
-
-}
-
-
-.inner-div {
+.hero-text {
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 1s ease, transform 1s ease;
+  animation: fadeInUp 1s ease-out forwards;
 }
 
-
-.inner-div.animate {
-  opacity: 1;
-  transform: translateY(0);
+.hero-text{
+  animation-delay: 0.3s;
 }
+
 
 
 @keyframes goofyMove {
@@ -73,17 +71,6 @@ h1{
 }
 
 
-.goofy-image {
-  animation: goofyMove 2s infinite ease-in-out;
-}
-
-
-.hero-section {
-  text-align: center;
-  padding: 100px 20px;
-  background-color: var(--pastel-blue);
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -95,16 +82,57 @@ h1{
   }
 }
 
-
-.hero-text, .hero-subtext {
-  opacity: 0;
-  animation: fadeInUp 1s ease-out forwards;
+h1{
+  font-weight: bold;
 }
 
-.hero-text {
-  animation-delay: 0.3s;
+.retro-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 228, 225, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 }
 
-.hero-subtext {
-  animation-delay: 0.5s;
+.retro-modal {
+  background-color: var(--pastel-yellow);
+  border: 3px solid var(--pastel-purple);
+  box-shadow: 0 0 20px var(--pastel-blue);
+  border-radius: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  width: 300px;
+  text-align: center;
+}
+
+.retro-btn-cancel {
+  background-color: var(--pastel-blue);
+  color: black;
+  border: 2px solid var(--pastel-pink);
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+.retro-btn-cancel:hover {
+  background-color: var(--pastel-pink);
+  color: white;
+  border-color: var(--pastel-purple);
+}
+
+.retro-btn-delete {
+  background-color: var(--pastel-orange);
+  color: black;
+  border: 2px solid var(--pastel-pink);
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+.retro-btn-delete:hover {
+  background-color: var(--pastel-pink);
+  color: white;
+  border-color: var(--pastel-purple);
 }

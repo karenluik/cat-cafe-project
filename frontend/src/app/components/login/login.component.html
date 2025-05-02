@@ -1,28 +1,33 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card mb-3">
-        <div class="card-header">
-          <h3 class="text-center">Login to Cat Cafe</h3>
+<div class="container-fluid py-5">
+  <div class="container mt-5 retro-login">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card mb-3 retro-card">
+          <div class="card-header retro-header">
+            <h3 class="text-center">Login to Kat Café</h3>
+          </div>
+          <div class="card-body">
+            <form (ngSubmit)="onSubmit()">
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control retro-input" id="username"
+                       [(ngModel)]="credentials.username" name="username" required>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control retro-input" id="password"
+                       [(ngModel)]="credentials.password" name="password" required>
+              </div>
+              <div *ngIf="errorMessage" class="alert alert-danger retro-alert">{{ errorMessage }}</div>
+              <div class="d-grid gap-2 d-md-flex justify-content-center">
+                <button type="submit" class="btn btn-pastel">Login</button>
+              </div>
+
+            </form>
+          </div>
         </div>
-        <div class="card-body">
-          <form (ngSubmit)="onSubmit()">
-            <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
-              <input type="text" class="form-control" id="username"
-                     [(ngModel)]="credentials.username" name="username" required>
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password"
-                     [(ngModel)]="credentials.password" name="password" required>
-            </div>
-            <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
-            <button type="submit" class="btn btn-primary w-100">Login</button>
-          </form>
-        </div>
+        <p class="text-center mt-3">If you don't have an account, register <a routerLink="/register" class="retro-link">HERE</a></p>
       </div>
-      <p>If you don't have an account register <a routerLink="/register">HERE</a></p>
     </div>
   </div>
 </div>

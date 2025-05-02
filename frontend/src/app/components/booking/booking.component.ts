@@ -62,35 +62,30 @@ export class BookingComponent implements OnInit {
 
   private formatBookingsForDisplay(bookings: Booking[]): any[] {
     return bookings.map(booking => {
-      // Log raw data for debugging
       console.log('Raw Booking Data:', booking);
+      const dateString = `${booking.booking_date.split('T')[0]}T${booking.booking_time}:00`;
 
-      // Combine booking_date (YYYY-MM-DD) and booking_time (HH:MM) correctly
-      const dateString = `${booking.booking_date.split('T')[0]}T${booking.booking_time}:00`;  // Add seconds
-
-      console.log('Constructed date string:', dateString); // Check the constructed date string
+      console.log('Constructed date string:', dateString);
 
       const date = new Date(dateString);
 
       if (isNaN(date.getTime())) {
-        console.error('Invalid date string:', dateString); // If invalid date, log error
+        console.error('Invalid date string:', dateString);
       }
 
       return {
         ...booking,
-        display_date: date.toLocaleDateString('en-US'),  // Display formatted date
+        display_date: date.toLocaleDateString('en-US'),
         display_time: date.toLocaleTimeString('en-US', {
           hour: '2-digit',
           minute: '2-digit',
-          hour12: false  // Use 24-hour format
-        }) // Display formatted time in 24-hour format
+          hour12: false
+        })
       };
     });
   }
 
 
-
-  // Rest of your existing methods remain unchanged...
   loadPackages(): void {
     this.packageService.getPackages().subscribe({
       next: (data) => this.packages = data,
@@ -104,7 +99,7 @@ export class BookingComponent implements OnInit {
   }
 
   showEditForm(booking: Booking): void {
-    this.currentBooking = { ...booking };  // Make sure you copy the booking data
+    this.currentBooking = { ...booking };
     this.showForm = true;
   }
 
@@ -114,24 +109,20 @@ export class BookingComponent implements OnInit {
     const user = this.authService.getUser();
     const packageData = this.packages.find(p => p.id === newBooking.package_id);
 
-    // Check if we are updating an existing booking
     if (newBooking.id) {
-      // UPDATE existing booking
       this.bookingService.updateBooking(newBooking.id, newBooking).subscribe({
         next: () => {
-          this.loadBookings(); // Reload bookings after update
+          this.loadBookings();
         },
         error: (err) => console.error('Failed to update booking', err)
       });
     } else {
-      // CREATE new booking
       const fullBooking = {
         ...newBooking,
         user: user,
         package: packageData
       };
 
-      // Adding new booking to local state
       this.bookings.push(fullBooking);
       this.displayBookings.push(this.formatSingleBookingForDisplay(fullBooking));
       this.loadBookings();
@@ -146,19 +137,11 @@ export class BookingComponent implements OnInit {
     return {
       ...booking,
       display_date: date.toLocaleDateString('en-US'),
-      display_time: booking.booking_time // directly use booking_time now
+      display_time: booking.booking_time
     };
   }
 
 
-  deleteBooking(id: number): void {
-    if (confirm('Are you sure you want to delete this booking?')) {
-      this.bookingService.deleteBooking(id).subscribe({
-        next: () => this.loadBookings(),
-        error: (err) => console.error('Error deleting booking', err)
-      });
-    }
-  }
 
   getPackageName(packageId: number): string {
     const pkg = this.packages.find(p => p.id === packageId);
@@ -173,4 +156,35 @@ export class BookingComponent implements OnInit {
 
   protected readonly faPenToSquare = faPenToSquare;
   protected readonly faTrashCan = faTrashCan;
+
+
+  showConfirmModal = false;
+  bookingToDelete: number | null = null;
+  showDeleteAlert = false;
+
+  promptDelete(id: number): void {
+    this.bookingToDelete = id;
+    this.showConfirmModal = true;
+  }
+
+  cancelDelete(): void {
+    this.bookingToDelete = null;
+    this.showConfirmModal = false;
+  }
+
+  confirmDelete(): void {
+    if (this.bookingToDelete !== null) {
+      this.bookingService.deleteBooking(this.bookingToDelete).subscribe(() => {
+        this.loadBookings();
+        this.showDeleteAlert = true;
+        this.showConfirmModal = false;
+        this.bookingToDelete = null;
+
+        setTimeout(() => {
+          this.showDeleteAlert = false;
+        }, 3000);
+      });
+    }
+  }
 }
+

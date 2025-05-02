@@ -12,10 +12,10 @@
           <a class="nav-link" aria-current="page" routerLink="home"><span routerLinkActive="active">Home</span>  |</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="cats" ><span routerLinkActive="active">Cats</span>   |</a>
+          <a class="nav-link" routerLink="cats" ><span routerLinkActive="active">Cats</span>   </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="bookings" *ngIf="authService.isLoggedIn()"><span routerLinkActive="active">Book</span> </a>
+          <a class="nav-link" routerLink="bookings" *ngIf="authService.isLoggedIn()">| <span routerLinkActive="active">Book</span> </a>
         </li>
       </ul>
       <ul class="navbar-nav">

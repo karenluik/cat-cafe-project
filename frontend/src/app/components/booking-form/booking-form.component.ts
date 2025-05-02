@@ -36,9 +36,9 @@ export class BookingFormComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['booking'] && this.booking) {
-      this.model = { ...this.booking };  // Update the form model when booking input changes
+      this.model = { ...this.booking };
       this.selectedDate = this.booking.booking_date;
-      this.availableSlots = this.bookingService.getAvailableSlots(this.selectedDate);  // Update available slots for the date
+      this.availableSlots = this.bookingService.getAvailableSlots(this.selectedDate);
     }
   }
 
@@ -50,41 +50,41 @@ export class BookingFormComponent implements OnChanges {
 
   onSubmit() {
     if (this.model.package_id && this.model.booking_date && this.model.booking_time) {
-      const user = this.authService.getUser();  // Get the logged-in user info from auth service
-      const user_id = user?.id;  // Extract the user_id from the user object
+      const user = this.authService.getUser();
+      const user_id = user?.id;
 
       // Prepare the data to send to the backend
       let bookingData: CreateBookingDto = {
         package_id: Number(this.model.package_id),
         booking_date: this.model.booking_date,
-        booking_time: this.model.booking_time || '',  // Ensure booking_time is a string
-        user_id: user_id as number // Ensure user_id is set correctly as a number
+        booking_time: this.model.booking_time || '',
+        user_id: user_id as number
       };
 
-      // Check if we are updating an existing booking
+
       if (this.model.id) {
-        // For updating an existing booking: exclude user_id from update request
+
         const updateData: Partial<CreateBookingDto> = {
           package_id: Number(this.model.package_id),
           booking_date: this.model.booking_date,
-          booking_time: this.model.booking_time || ''  // Ensure booking_time is a string
+          booking_time: this.model.booking_time || ''
         };
 
         this.bookingService.updateBooking(this.model.id, updateData).subscribe({
           next: (updatedBooking) => {
             console.log('Booking updated successfully:', updatedBooking);
-            this.submit.emit(updatedBooking); // Emit the updated booking
+            this.submit.emit(updatedBooking);
           },
           error: (err) => {
             console.error('Failed to update booking', err);
           }
         });
       } else {
-        // For creating a new booking: include user_id in the request
+
         this.bookingService.createBooking(bookingData).subscribe({
           next: (createdBooking) => {
             console.log('Booking created successfully:', createdBooking);
-            this.submit.emit(createdBooking); // Emit the newly created booking
+            this.submit.emit(createdBooking);
           },
           error: (err) => {
             console.error('Failed to create booking', err);
@@ -93,9 +93,6 @@ export class BookingFormComponent implements OnChanges {
       }
     }
   }
-
-
-
 
   getTodayDate(): string {
     return new Date().toISOString().split('T')[0];

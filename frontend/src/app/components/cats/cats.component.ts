@@ -1,12 +1,15 @@
 import {Component, inject} from '@angular/core';
 import {CatsService} from "../../services/cats.service";
 import {Cats} from "../../common/interfaces";
+import { NgStyle } from '@angular/common';
 
 
 @Component({
   selector: 'app-cats',
   standalone: true,
-  imports: [],
+  imports: [
+    NgStyle,
+  ],
   templateUrl: './cats.component.html',
   styleUrl: './cats.component.css'
 })
@@ -14,6 +17,7 @@ export class CatsComponent {
 private readonly catsService : CatsService = inject(CatsService);
 
 cats : Cats[] = [];
+
 
 constructor() {
   this.loadCats();

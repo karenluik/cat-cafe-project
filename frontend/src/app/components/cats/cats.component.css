@@ -11,17 +11,6 @@
   color: white;
 }
 
-* {
-  min-height: 20vh;
-}
-
-.hero-section {
-  background-color: var(--pastel-blue);
-}
-
-.about-us {
-  background: url("https://static.vecteezy.com/system/resources/previews/012/251/413/non_2x/psychedelic-y2k-background-2000-illustration-in-retro-aesthetic-1990-style-vector.jpg");
-}
 
 p {
   font-size: x-large;
@@ -32,14 +21,14 @@ h1{
   font-weight: bold;
 }
 
-.hero-section, .about-us {
-  border: 1px black solid;
+img {
+  width: 200px;
+  height: 250px;
+  border-radius: 5px;
 }
 
-.container {
+.container-fluid {
   border: 1px black solid;
-  border-radius: 20px;
-
 }
 
 
@@ -77,11 +66,6 @@ h1{
 }
 
 
-.hero-section {
-  text-align: center;
-  padding: 100px 20px;
-  background-color: var(--pastel-blue);
-}
 
 @keyframes fadeInUp {
   from {
@@ -95,15 +79,31 @@ h1{
 }
 
 
-.hero-text, .hero-subtext {
+.hero-text, .hero-subtext, .card, img {
   opacity: 0;
   animation: fadeInUp 1s ease-out forwards;
 }
 
-.hero-text {
+.hero-text, .card, img {
   animation-delay: 0.3s;
 }
 
-.hero-subtext {
+.hero-subtext, .card, img {
   animation-delay: 0.5s;
+}
+
+
+.card{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: large;
+  height: 55px;
+}
+
+.card-body{
+  font-weight: bold;
+
+}
+
+.container-fluid {
+  min-height: 100vh !important;
 }
