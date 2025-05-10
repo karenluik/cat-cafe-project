@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/db_cats"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL_CATS")
+}
+
+
+model Cats {
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(255)
+  description String? @db.Text
+  image_url    String? @db.VarChar(255)
+}
+

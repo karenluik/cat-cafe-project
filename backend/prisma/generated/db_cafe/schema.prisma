@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/db_cafe"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL_CAFE")
+}
+
+model Users {
+  id       Int        @id @default(autoincrement())
+  name     String
+  username String     @unique
+  email    String     @unique
+  password String
+  bookings Bookings[]
+}
+
+model Packages {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String?
+  price       Decimal
+  bookings    Bookings[]
+}
+
+model Bookings {
+  id           Int      @id @default(autoincrement())
+  user_id      Int
+  package_id   Int
+  booking_date DateTime @db.Date
+  booking_time String
+  user         Users    @relation(fields: [user_id], references: [id])
+  package      Packages @relation(fields: [package_id], references: [id])
+}
