@@ -33,7 +33,7 @@ export class RegistrationComponent {
         this.successMessage = 'Registration successful!';
         this.router.navigate(['/login']);
       },
-      error: (err) => this.errorMessage = err.error.message || 'Registration failed, please try again.'
+      error: (err) => this.errorMessage = 'Registration failed. Try again later.'
     });
   }
 }

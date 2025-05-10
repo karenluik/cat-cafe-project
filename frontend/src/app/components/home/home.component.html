@@ -2,7 +2,7 @@
   <h1 class="display-4 hero-text" style="color: var(--pastel-purple);"><span style=" background-color: var(--pastel-orange);"> Welcome to Kat Café </span></h1>
   <p class="lead hero-subtext" style=" color: var(--pastel-pink);">Book  <span style="background-color: var(--pastel-yellow);"> right meow </span> for a wonderful time.</p>
   <button class="btn btn-pastel hero-subtext mt-2" (click)="scrollTo('about')">About Us</button>
-  <button class="btn btn-pastel hero-subtext mt-2" routerLink="/login">Book Now!</button>
+  <button class="btn btn-pastel hero-subtext mt-2" routerLink="/login" *ngIf="!authService.isLoggedIn()">Book Now!</button>
   <img src="assets/images/cat-gif.webp" alt="8-bit Cat Running" class="cat-gif">
 </div>
 <div class="about-us py-5" id="about" >

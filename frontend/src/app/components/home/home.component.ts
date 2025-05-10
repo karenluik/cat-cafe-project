@@ -1,19 +1,21 @@
 import {RouterLink} from "@angular/router";
 import { Component, HostListener, ElementRef } from '@angular/core';
-import {ViewportScroller} from "@angular/common";
+import { NgIf, ViewportScroller } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    NgIf,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
 
-  constructor(private el: ElementRef,private viewportScroller: ViewportScroller) {}
+  constructor(private el: ElementRef,private viewportScroller: ViewportScroller,public authService: AuthService) {}
 
   @HostListener('window:scroll', ['$event'])
   onScroll() {
