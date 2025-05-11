@@ -3,7 +3,7 @@
 Este es un proyecto **API NestJS** con **Prisma + MySQL** y **frontend en Angular**.  
 Permite al usuario crear una cuenta, loguearse y hacer reservas en el cat café.
 
-Requisitos Previos
+### Requisitos Previos
 
 Antes de iniciar, asegúrate de tener instalado:
 
