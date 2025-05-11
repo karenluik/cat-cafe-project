@@ -28,7 +28,7 @@ JWT_SECRET=password
 
 JWT_EXPIRES_IN=60m
 
-Tendrás que actualizarlo dependiendo de tu ordenador
+
 3️⃣ Ejecuta migración de la base de datos (tengo dos schemas así que hay que hacerlo dos veces)
 > npx prisma generate --schema=prisma/schema_cafe.prisma
 
