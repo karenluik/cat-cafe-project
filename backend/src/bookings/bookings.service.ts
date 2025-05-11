@@ -9,25 +9,25 @@ import {UpdateBookingDto} from "./dto/update-booking.dto";
 export class BookingsService {
     constructor(private prisma: PrismaService) {}
 
-// BookingsService (Backend)
-    async create(bookingData: Omit<CreateBookingDto, 'user_id'> & { user_id: number }) {
-        console.log('Final Booking Data:', bookingData);  // Check booking data before DB
 
-        // booking_date is in string format (YYYY-MM-DD)
+    async create(bookingData: Omit<CreateBookingDto, 'user_id'> & { user_id: number }) {
+        console.log('Final Booking Data:', bookingData);
+
+
         const bookingDate = new Date(bookingData.booking_date);
 
-        // Parse booking_time (HH:MM) and update the bookingDate object to have the correct time
-        const timeParts = bookingData.booking_time.split(':');
-        bookingDate.setHours(parseInt(timeParts[0]));  // Set hours from booking_time (HH)
-        bookingDate.setMinutes(parseInt(timeParts[1]));  // Set minutes from booking_time (MM)
 
-        // Now, save the booking with the correct booking_date and booking_time
+        const timeParts = bookingData.booking_time.split(':');
+        bookingDate.setHours(parseInt(timeParts[0]));
+        bookingDate.setMinutes(parseInt(timeParts[1]));
+
+
         return this.prisma.dbCafe.bookings.create({
             data: {
                 user_id: bookingData.user_id,
                 package_id: bookingData.package_id,
-                booking_date: bookingDate,  // The Date object now
-                booking_time: bookingData.booking_time  // The original string (HH:MM)
+                booking_date: bookingDate,
+                booking_time: bookingData.booking_time
             }
         });
     }

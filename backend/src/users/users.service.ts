@@ -39,7 +39,7 @@ export class UsersService {
                 throw new ConflictException('Username or email already in use');
             }
 
-            throw error; // Let NestJS handle unexpected errors
+            throw error;
         }
 
     }

@@ -5,9 +5,9 @@ export class CreateBookingDto {
     package_id: number;
 
     @IsDateString()
-    booking_date: string; // Date in YYYY-MM-DD format
+    booking_date: string;
 
     @IsString()
-    @Matches(/^([01]\d|2[0-3]):([0-5]\d)$/) // Ensures HH:MM format
-    booking_time: string; // Time in HH:MM format
+    @Matches(/^([01]\d|2[0-3]):([0-5]\d)$/)
+    booking_time: string;
 }

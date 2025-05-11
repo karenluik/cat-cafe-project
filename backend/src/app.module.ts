@@ -24,9 +24,9 @@ import { JwtModule } from '@nestjs/jwt';
     BookingsModule,
     PackagesModule,
     CatsModule,
-    JwtModule.register({  // Register the JWT module
-      secret: process.env.JWT_SECRET,  // Your secret key for JWT
-      signOptions: { expiresIn: '1h' },  // Token expiration time
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '1h' },
     }),
   ],
   controllers: [UsersController, AuthController],

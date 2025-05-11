@@ -13,13 +13,13 @@ export class BookingsController {
 
     @Post()
     create(
-        @User() user: { id: number },  // user_id fetched from the JWT token
-        @Body() createBookingDto: Omit<CreateBookingDto, 'user_id'>  // Exclude user_id
+        @User() user: { id: number },
+        @Body() createBookingDto: Omit<CreateBookingDto, 'user_id'>
     ) {
         console.log('Authenticated User:', user);
         return this.bookingsService.create({
             ...createBookingDto,
-            user_id: user.id  // Add user_id to the booking data
+            user_id: user.id
         });
     }
 

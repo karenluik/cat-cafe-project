@@ -5,7 +5,7 @@ import { CatsService } from './cats.service';
 export class CatsController {
     constructor(private readonly catsService: CatsService) {}
 
-    // Get all cats
+
     @Get()
     findAll() {
         return this.catsService.findAll();
