@@ -43,6 +43,7 @@ NestJS estará ejecutandose en  http://localhost:3000.
 
 ### 1️⃣ Instalar Dependencies
 > cd frontend
+
 > npm install
 
 2️⃣  Inicializa la aplicación
