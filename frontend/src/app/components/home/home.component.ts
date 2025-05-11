@@ -25,7 +25,7 @@ export class HomeComponent {
     }
   }
 
-  // Helper function to check if an element is in the viewport
+
   isInViewport(element: HTMLElement): boolean {
     const rect = element.getBoundingClientRect();
     return (

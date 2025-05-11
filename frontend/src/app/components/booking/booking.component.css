@@ -5,7 +5,9 @@
   min-height: 100vh;
 }
 
-
+.container {
+  animation: fadeInUp 1s ease-out forwards;
+}
 .retro-card-alt {
   background-color: var(--pastel-yellow);
   border: 2px dashed var(--pastel-blue);
@@ -17,6 +19,7 @@
 
 
 .btn-pastel-alt {
+  animation: fadeInUp 1s ease-out forwards;
   background-color: var(--pastel-blue);
   color: var(--pastel-purple);
   border: 2px solid var(--pastel-purple);
@@ -53,22 +56,6 @@
   animation-delay: 0.3s;
 }
 
-
-
-@keyframes goofyMove {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(-5px, -5px) rotate(-5deg);
-  }
-  50% {
-    transform: translate(5px, 5px) rotate(5deg);
-  }
-  75% {
-    transform: translate(-5px, 5px) rotate(-5deg);
-  }
-}
 
 
 @keyframes fadeInUp {

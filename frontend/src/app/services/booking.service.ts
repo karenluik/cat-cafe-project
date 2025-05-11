@@ -3,12 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Booking } from '../common/interfaces';
+import { environment } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookingService {
-  private apiUrl = 'http://localhost:3000/bookings';
 
   constructor(
     private http: HttpClient,
@@ -27,31 +27,31 @@ export class BookingService {
   }
 
   createBooking(booking: Booking): Observable<Booking> {
-    return this.http.post<Booking>(this.apiUrl, booking, {
+    return this.http.post<Booking>(environment.baseUrl+'bookings', booking, {
       headers: this.getHeaders()
     });
   }
 
   getBookings(): Observable<Booking[]> {
-    return this.http.get<Booking[]>(this.apiUrl, {
+    return this.http.get<Booking[]>(environment.baseUrl+'bookings', {
       headers: this.getHeaders()
     });
   }
 
   getBooking(id: number): Observable<Booking> {
-    return this.http.get<Booking>(`${this.apiUrl}/${id}`, {
+    return this.http.get<Booking>(environment.baseUrl+'bookings/'+id, {
       headers: this.getHeaders()
     });
   }
 
   updateBooking(id: number, booking: Partial<Booking>): Observable<Booking> {
-    return this.http.put<Booking>(`${this.apiUrl}/${id}`, booking, {
+    return this.http.put<Booking>(environment.baseUrl+'bookings/'+id, booking, {
       headers: this.getHeaders()
     });
   }
 
   deleteBooking(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`, {
+    return this.http.delete<void>(environment.baseUrl+'bookings/'+id, {
       headers: this.getHeaders()
     });
   }

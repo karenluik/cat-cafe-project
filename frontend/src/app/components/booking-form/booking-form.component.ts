@@ -53,7 +53,6 @@ export class BookingFormComponent implements OnChanges {
       const user = this.authService.getUser();
       const user_id = user?.id;
 
-      // Prepare the data to send to the backend
       let bookingData: CreateBookingDto = {
         package_id: Number(this.model.package_id),
         booking_date: this.model.booking_date,

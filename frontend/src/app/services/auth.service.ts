@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 
 interface LoginResponse {
   access_token: string;
-  id: number;  // Now matching your backend response
-  // other possible response properties
+  id: number;
+
 }
 
 @Injectable({
