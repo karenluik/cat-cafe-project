@@ -46,7 +46,4 @@ export const environment = {
 
 Esta aplicación se ejecutará en  http://localhost:4200.
 
-💡 OBSERVACIONES
-NO OLVIDES inicializar el backend antes de inicializar el frontend.
-Utiliza Postman or Thunder Client para probar los endpoints del API.
 
