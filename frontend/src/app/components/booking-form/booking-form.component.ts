@@ -36,10 +36,10 @@ export class BookingFormComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['booking'] && this.booking) {
-      // Clone the booking into the form model
+
       this.model = { ...this.booking };
 
-      // Format the booking_date as YYYY-MM-DD for the input[type="date"]
+
       const rawDate = new Date(this.booking.booking_date ?? '');
       if (!isNaN(rawDate.getTime())) {
         const yyyy = rawDate.getFullYear();
@@ -50,7 +50,7 @@ export class BookingFormComponent implements OnChanges {
         this.model.booking_date = '';
       }
 
-      // Set selectedDate if needed
+
       this.selectedDate = this.model.booking_date;
       this.availableSlots = this.bookingService.getAvailableSlots(this.selectedDate);
     }
