@@ -11,6 +11,7 @@ Permite al usuario crear una cuenta, loguearse y hacer reservas en el cat café.
 ### 1️⃣ Instalar Dependencias
 
 > cd backend
+
 > npm install
 
 2️⃣ Variables de entorno
