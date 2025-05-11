@@ -7,29 +7,56 @@
             <h3 class="text-center">Register to Kat Café</h3>
           </div>
           <div class="card-body">
-            <form (ngSubmit)="onSubmit()">
+            <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
               <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control retro-input" id="name" [(ngModel)]="user.name" name="name" required>
+                <input type="text" class="form-control retro-input" id="name"
+                       [(ngModel)]="user.name" name="name" #name="ngModel"
+                       required minlength="5" maxlength="30">
+                <div *ngIf="name.invalid && name.touched" class="text-danger">
+                  <div *ngIf="name.errors?.['required']">Name is required.</div>
+                  <div *ngIf="name.errors?.['minlength']">Name must be at least 5 characters.</div>
+                  <div *ngIf="name.errors?.['maxlength']">Name cannot exceed 30 characters.</div>
+                </div>
               </div>
+
               <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control retro-input" id="username" [(ngModel)]="user.username" name="username" required>
+                <input type="text" class="form-control retro-input" id="username"
+                       [(ngModel)]="user.username" name="username" #username="ngModel"
+                       required minlength="5" maxlength="30">
+                <div *ngIf="username.invalid && username.touched" class="text-danger">
+                  <div *ngIf="username.errors?.['required']">Username is required.</div>
+                  <div *ngIf="username.errors?.['minlength']">Username must be at least 5 characters.</div>
+                  <div *ngIf="username.errors?.['maxlength']">Username cannot exceed 30 characters.</div>
+                </div>
               </div>
+
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control retro-input" id="email" [(ngModel)]="user.email" name="email" required>
+                <input type="email" class="form-control retro-input" id="email" [(ngModel)]="user.email" name="email" #email="ngModel" required email>
+                <div *ngIf="email.invalid && email.touched" class="text-danger">
+                  <div *ngIf="email.errors?.['required']">Email is required.</div>
+                  <div *ngIf="email.errors?.['email']">Enter a valid email.</div>
+                </div>
               </div>
+
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control retro-input" id="password" [(ngModel)]="user.password" name="password" required>
+                <input type="password" class="form-control retro-input" id="password" [(ngModel)]="user.password" name="password" #password="ngModel" required minlength="6">
+                <div *ngIf="password.invalid && password.touched" class="text-danger">
+                  <div *ngIf="password.errors?.['required']">Password is required.</div>
+                  <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters.</div>
+                </div>
               </div>
+
 
               <div *ngIf="errorMessage" class="alert alert-danger retro-alert">{{ errorMessage }}</div>
               <div *ngIf="successMessage" class="alert alert-success retro-alert">{{ successMessage }}</div>
 
               <div class="d-grid gap-2 d-md-flex justify-content-center">
-                <button type="submit" class="btn btn-pastel">Register</button>
+                <button type="submit" class="btn btn-pastel" [disabled]="form.invalid">Register</button>
+
               </div>
             </form>
           </div>

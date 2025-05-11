@@ -28,12 +28,17 @@ export class RegistrationComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(): void {
+    if (!this.user.name || !this.user.username || !this.user.email || !this.user.password) {
+      this.errorMessage = 'Please fill in all fields correctly.';
+      return;
+    }
+
     this.authService.register(this.user).subscribe({
       next: () => {
         this.successMessage = 'Registration successful!';
         this.router.navigate(['/login']);
       },
-      error: (err) => this.errorMessage = 'Registration failed. Try again later.'
+      error: () => this.errorMessage = 'Registration failed. Try again later.'
     });
   }
 }
