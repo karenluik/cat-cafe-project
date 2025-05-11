@@ -24,7 +24,7 @@ import {faPenToSquare, faSmile, faTrashCan} from "@fortawesome/free-solid-svg-ic
 })
 export class BookingComponent implements OnInit {
   bookings: Booking[] = [];
-  displayBookings: any[] = []; // New property for formatted bookings
+  displayBookings: any[] = [];
   packages: Package[] = [];
   showForm = false;
   currentBooking?: Booking;
@@ -55,9 +55,6 @@ export class BookingComponent implements OnInit {
       error: (err) => console.error('Error loading bookings', err)
     });
   }
-
-
-
 
 
   private formatBookingsForDisplay(bookings: Booking[]): any[] {

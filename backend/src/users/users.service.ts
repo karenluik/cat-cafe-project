@@ -1,6 +1,6 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
-import { Prisma } from '@prisma/client';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 @Injectable()
 export class UsersService {
@@ -25,7 +25,7 @@ export class UsersService {
         } catch (error) {
             console.error('Create user error:', error);
             if (
-              error instanceof Prisma.PrismaClientKnownRequestError &&
+              error instanceof PrismaClientKnownRequestError &&
               error.code === 'P2002'
             ) {
                 // Unique constraint failed
