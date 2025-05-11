@@ -5,7 +5,7 @@
   min-height: 100vh;
 }
 
-.container {
+.card{
   animation: fadeInUp 1s ease-out forwards;
 }
 .retro-card-alt {
