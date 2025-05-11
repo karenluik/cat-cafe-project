@@ -37,6 +37,7 @@ DATABASE_URL_CAFE="mysql://root@localhost:3306/cat_cafe_db"
 PORT=3000
 
 #jwt
+
 JWT_SECRET=password
 
 JWT_EXPIRES_IN=60m
