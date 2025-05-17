@@ -2,11 +2,86 @@
   <h1 class="display-4 hero-text" style="color: var(--pastel-purple);"><span style=" background-color: var(--pastel-orange);"> Welcome to Kat Café </span></h1>
   <p class="lead hero-subtext" style=" color: var(--pastel-pink);">Book  <span style="background-color: var(--pastel-yellow);"> right meow </span> for a wonderful time.☕
   </p>
+  <p *ngIf="!authService.isLoggedIn()" class="lead hero-subtext">You must create an account to book.</p>
   <button class="btn btn-pastel hero-subtext mt-2" (click)="scrollTo('about')">About Us</button>
   <button class="btn btn-pastel hero-subtext mt-2" routerLink="/login" *ngIf="!authService.isLoggedIn()">Book Now!</button>
   <img src="assets/images/cat-gif.webp" alt="8-bit Cat Running" class="cat-gif">
 </div>
 <div class="about-us py-5" id="about" >
+  <div *ngIf="showContactModal" class="retro-modal-overlay" (click)="closeContactModal()">
+    <div class="retro-modal retro-card" (click)="$event.stopPropagation()">
+      <div class="card-header retro-header">
+        <h3>Contact Us</h3>
+      </div>
+      <div class="card-body">
+        <form #contactForm="ngForm" (ngSubmit)="submitContact(contactForm)" novalidate>
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-control retro-input"
+              [(ngModel)]="contact.name"
+              #name="ngModel"
+              required
+              minlength="3"
+              maxlength="30"
+            />
+            <div *ngIf="name.invalid && name.touched" class="text-danger">
+              <div *ngIf="name.errors?.['required']">Name is required.</div>
+              <div *ngIf="name.errors?.['minlength']">Name must be at least 3 characters.</div>
+              <div *ngIf="name.errors?.['maxlength']">Name cannot exceed 30 characters.</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control retro-input"
+              [(ngModel)]="contact.email"
+              #email="ngModel"
+              required
+              email
+            />
+            <div *ngIf="email.invalid && email.touched" class="text-danger">
+              <div *ngIf="email.errors?.['required']">Email is required.</div>
+              <div *ngIf="email.errors?.['email']">Enter a valid email.</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              class="form-control retro-input"
+              [(ngModel)]="contact.message"
+              #message="ngModel"
+              required
+              minlength="5"
+              maxlength="500"
+            ></textarea>
+            <div *ngIf="message.invalid && message.touched" class="text-danger">
+              <div *ngIf="message.errors?.['required']">Message is required.</div>
+              <div *ngIf="message.errors?.['minlength']">Message must be at least 5 characters.</div>
+              <div *ngIf="message.errors?.['maxlength']">Message cannot exceed 500 characters.</div>
+            </div>
+          </div>
+          <div *ngIf="successMessage" class="alert alert-success retro-alert mt-3">{{ successMessage }}</div>
+          <div *ngIf="errorMessage" class="alert alert-danger retro-alert mt-3">{{ errorMessage }}</div>
+          <div class="d-flex justify-content-center gap-3 mt-4">
+            <button type="submit" class="btn btn-pastel btn-pastel-send" [disabled]="contactForm.invalid">Send</button>
+            <button type="button" class="btn btn-pastel retro-btn-cancel" (click)="closeContactModal()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <div class="container inner-div" style="background-color: var(--pastel-blue);" id="animatedDiv">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-md-6">
@@ -16,6 +91,10 @@
             Now we are <span style="color: var(--pastel-pink);background-color: var(--pastel-yellow);">proud</span> to say that we have had <span style="color: var(--pastel-pink);background-color: var(--pastel-yellow);">over 100</span> kitties be <span style="color: var(--pastel-pink);background-color: var(--pastel-yellow);">adopted</span> from
             our café.
           </p>
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-pastel hero-subtext mt-2" (click)="showContactModal = true">Contact Us</button>
+
+        </div>
       </div>
       <div class="col-md-6">
         <img src="assets/images/surprised_cat.png" alt="cat" class="img-fluid rounded goofy-image">

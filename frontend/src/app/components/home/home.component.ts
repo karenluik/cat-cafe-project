@@ -2,6 +2,7 @@ import {RouterLink} from "@angular/router";
 import { Component, HostListener, ElementRef } from '@angular/core';
 import { NgIf, ViewportScroller } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +10,15 @@ import { AuthService } from '../../services/auth.service';
   imports: [
     RouterLink,
     NgIf,
+    FormsModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
 
-  constructor(private el: ElementRef,private viewportScroller: ViewportScroller,public authService: AuthService) {}
+  constructor(private el: ElementRef, private viewportScroller: ViewportScroller, public authService: AuthService) {
+  }
 
   @HostListener('window:scroll', ['$event'])
   onScroll() {
@@ -39,7 +42,51 @@ export class HomeComponent {
   scrollTo(section: string) {
     this.viewportScroller.scrollToAnchor(section);
   };
+
+  showContactModal = false;
+  contact = {
+    name: '',
+    email: '',
+    message: ''
+  };
+  successMessage = '';
+  errorMessage = '';
+
+  openContactModal() {
+    this.showContactModal = true;
+    this.clearMessages();
+  }
+
+  closeContactModal() {
+    this.showContactModal = false;
+    this.clearMessages();
+    this.resetForm();
+  }
+
+  clearMessages() {
+    this.successMessage = '';
+    this.errorMessage = '';
+  }
+
+  resetForm() {
+    this.contact = { name: '', email: '', message: '' };
+  }
+
+  submitContact(form: any) {
+    if (form.valid) {
+
+      this.successMessage = "Thanks for reaching out! We'll get back to you soon.";
+      this.errorMessage = '';
+      form.resetForm();
+      this.contact = { name: '', email: '', message: '' };
+
+      setTimeout(() => {
+        this.closeContactModal();
+      }, 1500);
+    } else {
+      this.errorMessage = 'Please fill out the form correctly before sending.';
+      this.successMessage = '';
+    }
+  }
+
 }
-
-
-

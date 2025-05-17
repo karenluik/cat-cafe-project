@@ -15,5 +15,4 @@ import {faGithub} from "@fortawesome/free-brands-svg-icons";
 export class FooterComponent {
 
   protected readonly faHeart = faHeart;
-  protected readonly faGithub = faGithub;
 }
