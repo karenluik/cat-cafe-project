@@ -3,6 +3,7 @@ import { Component, HostListener, ElementRef } from '@angular/core';
 import { NgIf, ViewportScroller } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule, NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 })
 export class HomeComponent {
 
-  constructor(private el: ElementRef, private viewportScroller: ViewportScroller, public authService: AuthService) {
+  constructor(private el: ElementRef, private viewportScroller: ViewportScroller, public authService: AuthService,private http: HttpClient) {
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -74,19 +75,35 @@ export class HomeComponent {
 
   submitContact(form: any) {
     if (form.valid) {
+      const formData = new FormData();
+      formData.append('name', this.contact.name);
+      formData.append('email', this.contact.email);
+      formData.append('message', this.contact.message);
 
-      this.successMessage = "Thanks for reaching out! We'll get back to you soon.";
-      this.errorMessage = '';
-      form.resetForm();
-      this.contact = { name: '', email: '', message: '' };
+      this.http.post('https://getform.io/f/allljdla', formData, { responseType: 'text' }).subscribe({
+        next: () => {
+          this.successMessage = "Thanks for reaching out! We'll get back to you soon.";
+          this.errorMessage = '';
+          form.resetForm();
+          this.contact = { name: '', email: '', message: '' };
 
-      setTimeout(() => {
-        this.closeContactModal();
-      }, 1500);
+          setTimeout(() => {
+            this.closeContactModal();
+          }, 1500);
+        },
+        error: (err) => {
+          this.errorMessage = 'There was a problem sending your message. Please try again later.';
+          this.successMessage = '';
+          console.error('Form submission error:', err);
+        }
+      });
+
     } else {
       this.errorMessage = 'Please fill out the form correctly before sending.';
       this.successMessage = '';
     }
   }
+
+
 
 }
