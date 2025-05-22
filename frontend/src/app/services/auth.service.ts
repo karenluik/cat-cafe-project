@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from '../environment/environment';
 
 interface LoginResponse {
   access_token: string;
@@ -13,7 +14,7 @@ interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api/auth';
+  private apiUrl = `${environment.baseUrl}auth`;
   private tokenKey = 'cat_cafe_token';
   private userIdKey = 'cat_cafe_user_id';
 
