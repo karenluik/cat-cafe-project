@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Common variables
+        - NODE_ENV=${NODE_ENV:-production}
+        - PORT=${PORT:-3000}
+        -
+        # Server variables
+        - JWT_SECRET=${JWT_SECRET}
+        - JWT_EXPIRES_IN=${JWT_EXPIRES_IN}
+        - DATABASE_URL_CATS=${DATABASE_URL_CATS}
+        - DATABASE_URL_CAFE=${DATABASE_URL_CAFE}
+    environment:
+      # Common variables
+      - NODE_ENV=${NODE_ENV:-production}
+      - PORT=${PORT:-3000}
+      -
+      # Server variables
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRES_IN=${JWT_EXPIRES_IN}
+      - DATABASE_URL_CATS=${DATABASE_URL_CATS}
+      - DATABASE_URL_CAFE=${DATABASE_URL_CAFE}
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:3000/api/cats"]
+      interval: 20s
+      timeout: 10s
+      retries: 3

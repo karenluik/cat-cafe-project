@@ -12,6 +12,8 @@ import {UsersService} from "./users/users.service";
 import {UsersController} from "./users/users.controller";
 import {AuthController} from "./auth/auth.controller";
 import { JwtModule } from '@nestjs/jwt';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -27,6 +29,9 @@ import { JwtModule } from '@nestjs/jwt';
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1h' },
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../../..', 'frontend/dist/cat-cafe/browser'),
     }),
   ],
   controllers: [UsersController, AuthController],

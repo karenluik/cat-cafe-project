@@ -13,7 +13,7 @@ interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/auth';
+  private apiUrl = 'http://localhost:3000/api/auth';
   private tokenKey = 'cat_cafe_token';
   private userIdKey = 'cat_cafe_user_id';
 
