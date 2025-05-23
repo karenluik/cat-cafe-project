@@ -15,6 +15,8 @@ model Users {
   email    String     @unique
   password String
   bookings Bookings[]
+
+  @@map("users")
 }
 
 model Packages {
@@ -23,6 +25,8 @@ model Packages {
   description String?
   price       Decimal
   bookings    Bookings[]
+
+  @@map("packages")
 }
 
 model Bookings {
@@ -33,4 +37,6 @@ model Bookings {
   booking_time String
   user         Users    @relation(fields: [user_id], references: [id])
   package      Packages @relation(fields: [package_id], references: [id])
+
+  @@map("bookings")
 }

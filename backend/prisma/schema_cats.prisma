@@ -14,5 +14,6 @@ model Cats {
   name        String  @db.VarChar(255)
   description String? @db.Text
   image_url    String? @db.VarChar(255)
+  @@map("cats")
 }
 
