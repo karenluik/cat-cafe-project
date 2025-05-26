@@ -129,48 +129,6 @@ export class BookingFormComponent implements OnChanges {
     max.setFullYear(max.getFullYear() + 1);
     return max.toISOString().split('T')[0];
   }
-
-  dateError: string = '';
-
-  validateDate(dateControl: any) {
-    const dateStr = dateControl.value;
-    this.dateError = '';
-
-    if (!dateStr) {
-      this.dateError = 'Date is required';
-      return;
-    }
-
-
-    const date = new Date(dateStr);
-    if (isNaN(date.getTime())) {
-      this.dateError = 'Please enter a valid date';
-      return;
-    }
-
-
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    if (date < today) {
-      this.dateError = 'Date cannot be in the past';
-      return;
-    }
-
-    // Optional: Add maximum date validation if needed
-    // const maxDate = new Date(this.getMaxDate());
-    // if (date > maxDate) {
-    //   this.dateError = `Date cannot be after ${this.getMaxDate()}`;
-    // }
-  }
-
-  isFormValid(): boolean {
-    return !!(
-      this.model.package_id &&
-      this.model.booking_date &&
-      !this.dateError &&
-      this.model.booking_time
-    );
-  }
 }
 
 

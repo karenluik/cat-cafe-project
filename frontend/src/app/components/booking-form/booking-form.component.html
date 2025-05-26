@@ -2,7 +2,7 @@
   <div class="card-body">
     <h5 class="card-title retro-title text-center">{{ booking ? 'Edit Booking' : 'New Booking' }}</h5>
 
-    <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()">
       <div class="mb-3">
         <label class="form-label">Package</label>
         <select class="form-select retro-input" [(ngModel)]="model.package_id" name="packageId" required>
@@ -20,16 +20,8 @@
                [max]="getMaxDate()"
                [(ngModel)]="model.booking_date"
                name="bookingDate"
-               #bookingDate="ngModel"
-               (change)="validateDate($event)"
-               (blur)="validateDate($event)"
+               (change)="onDateChange(model.booking_date || '')"
                required>
-        <div *ngIf="bookingDate.invalid && (bookingDate.touched || bookingDate.dirty)" class="text-danger">
-          <div *ngIf="bookingDate.errors?.['required']">Date is required.</div>
-          <div *ngIf="bookingDate.errors?.['invalidDate']">Please enter a valid date.</div>
-          <div *ngIf="bookingDate.errors?.['minDate']">Date cannot be before {{ getTodayDate() }}.</div>
-          <div *ngIf="bookingDate.errors?.['maxDate']">Date cannot be after {{ getMaxDate() }}.</div>
-        </div>
       </div>
 
       <div class="mb-3" *ngIf="availableSlots.length > 0">
@@ -46,10 +38,7 @@
       </div>
       <div class="d-flex justify-content-end gap-2">
         <button type="button" class="btn btn-secondary retro-btn-cancel" (click)="cancel.emit()">Cancel</button>
-        <button type="submit" class="btn btn-primary btn-pastel-alt"
-                [disabled]="form.invalid || !model.booking_time || !model.booking_date">
-          Submit
-        </button>
+        <button type="submit" class="btn btn-primary btn-pastel-alt" [disabled]="!model.booking_time">Submit</button>
       </div>
     </form>
   </div>
