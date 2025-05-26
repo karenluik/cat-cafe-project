@@ -59,6 +59,19 @@ export class BookingFormComponent implements OnChanges {
 
   onDateChange(date: string) {
     this.selectedDate = date;
+    const selected = new Date(date);
+    const today = new Date();
+    const oneYearFromNow = new Date();
+
+    oneYearFromNow.setFullYear(today.getFullYear() + 1);
+
+    if (selected < today || selected > oneYearFromNow || isNaN(selected.getTime())) {
+      alert('Please select a valid booking date within the next year.');
+      this.model.booking_date = '';
+      this.availableSlots = [];
+      return;
+    }
+
     this.availableSlots = this.bookingService.getAvailableSlots(date);
   }
 
@@ -109,6 +122,12 @@ export class BookingFormComponent implements OnChanges {
 
   getTodayDate(): string {
     return new Date().toISOString().split('T')[0];
+  }
+
+  getMaxDate(): string {
+    const max = new Date();
+    max.setFullYear(max.getFullYear() + 1);
+    return max.toISOString().split('T')[0];
   }
 }
 

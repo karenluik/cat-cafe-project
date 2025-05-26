@@ -17,6 +17,7 @@
         <label class="form-label">Date</label>
         <input type="date" class="form-control retro-input"
                [min]="getTodayDate()"
+               [max]="getMaxDate()"
                [(ngModel)]="model.booking_date"
                name="bookingDate"
                (change)="onDateChange(model.booking_date || '')"

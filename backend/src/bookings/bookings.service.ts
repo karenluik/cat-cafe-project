@@ -12,7 +12,7 @@ export class BookingsService {
 
     async create(bookingData: Omit<CreateBookingDto, 'user_id'> & { user_id: number }) {
         console.log('Final Booking Data:', bookingData);
-
+        this.validateBookingDate(bookingData.booking_date);
 
         const bookingDate = new Date(bookingData.booking_date);
 
@@ -72,5 +72,28 @@ export class BookingsService {
         return this.prisma.dbCafe.bookings.delete({
             where: { id },
         });
+    }
+
+
+    private validateBookingDate(dateStr: string): void {
+        const date = new Date(dateStr);
+        const today = new Date();
+        const max = new Date();
+
+        today.setHours(0, 0, 0, 0);
+        max.setFullYear(today.getFullYear() + 1);
+        max.setHours(0, 0, 0, 0);
+
+        if (isNaN(date.getTime())) {
+            throw new Error('Invalid booking date format.');
+        }
+
+        if (date < today) {
+            throw new Error('Booking date cannot be in the past.');
+        }
+
+        if (date > max) {
+            throw new Error('Booking date cannot be more than 1 year in the future.');
+        }
     }
 }
