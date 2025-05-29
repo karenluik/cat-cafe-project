@@ -12,6 +12,8 @@ import {FooterComponent} from "./components/footer/footer.component";
 })
 export class AppComponent {
   title = 'kat-cafe';
+  showRickroll = false;
+
   private konamiCode: string[] = [
     'ArrowUp', 'ArrowUp',
     'ArrowDown', 'ArrowDown',
@@ -29,20 +31,11 @@ export class AppComponent {
     }
 
     if (this.inputSequence.join('') === this.konamiCode.join('')) {
-      this.triggerRickroll();
+      this.showRickroll = true;
     }
   }
 
-  triggerRickroll() {
-    const video = document.createElement('iframe');
-    video.width = '0';
-    video.height = '0';
-    video.style.display = 'none';
-    video.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
-    video.allow = 'autoplay';
-
-    document.body.appendChild(video);
-
-    alert('🎶 Never gonna give you up... 🎶');
+  closeRickroll() {
+    this.showRickroll = false;
   }
 }
