@@ -28,7 +28,7 @@ export class BookingComponent implements OnInit {
   packages: Package[] = [];
   showForm = false;
   currentBooking?: Booking;
-  showSuccessToast = false;
+
 
   constructor(
     private bookingService: BookingService,
@@ -111,8 +111,6 @@ export class BookingComponent implements OnInit {
       this.bookingService.updateBooking(newBooking.id, newBooking).subscribe({
         next: () => {
           this.loadBookings();
-          this.showSuccessToast = true;
-          setTimeout(() => this.showSuccessToast = false, 4000);
         },
         error: (err) => console.error('Failed to update booking', err)
       });

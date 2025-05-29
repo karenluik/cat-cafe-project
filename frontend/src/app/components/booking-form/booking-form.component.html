@@ -1,3 +1,7 @@
+<div *ngIf="showDateWarning" class="retro-alert-box alert alert-warning alert-dismissible fade show pastel-warning" role="alert">
+  Please select a valid booking date within the next year.
+  <button type="button" class="btn-close" (click)="showDateWarning = false" aria-label="Close"></button>
+</div>
 <div class="card mb-4 retro-card-alt">
   <div class="card-body">
     <h5 class="card-title retro-title text-center">{{ booking ? 'Edit Booking' : 'New Booking' }}</h5>

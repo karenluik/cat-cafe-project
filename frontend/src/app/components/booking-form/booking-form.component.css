@@ -61,3 +61,14 @@
   color: white;
   border-color: var(--pastel-purple);
 }
+
+.pastel-warning {
+  background-color: var(--pastel-yellow, #fff3cd);
+  color: black;
+  border: 2px solid var(--pastel-orange, #ffd6a5);
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}

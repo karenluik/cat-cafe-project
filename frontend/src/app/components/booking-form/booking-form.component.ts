@@ -22,7 +22,7 @@ export class BookingFormComponent implements OnChanges {
   @Input() booking: any;
   @Output() submit = new EventEmitter<Booking>();
   @Output() cancel = new EventEmitter<void>();
-
+  showDateWarning = false;
   model: Partial<Booking> = {
     id: undefined,
     package_id: undefined,
@@ -66,9 +66,13 @@ export class BookingFormComponent implements OnChanges {
     oneYearFromNow.setFullYear(today.getFullYear() + 1);
 
     if (selected < today || selected > oneYearFromNow || isNaN(selected.getTime())) {
-      alert('Please select a valid booking date within the next year.');
+      this.showDateWarning = true;
       this.model.booking_date = '';
       this.availableSlots = [];
+
+      // Auto-dismiss the warning after 4 seconds (optional)
+      setTimeout(() => this.showDateWarning = false, 4000);
+
       return;
     }
 
