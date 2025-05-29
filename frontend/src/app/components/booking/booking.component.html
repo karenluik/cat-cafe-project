@@ -3,6 +3,10 @@
     Booking has been deleted!
     <button type="button" class="btn-close" (click)="showDeleteAlert = false" aria-label="Close"></button>
   </div>
+  <div *ngIf="showSuccessToast" class="retro-alert-box alert alert-success alert-dismissible fade show pastel-toast" role="alert">
+    Booking saved successfully!
+    <button type="button" class="btn-close" (click)="showSuccessToast = false" aria-label="Close"></button>
+  </div>
   <div *ngIf="showConfirmModal" class="retro-modal-overlay">
     <div class="retro-modal card">
       <div class="card-body text-center">
