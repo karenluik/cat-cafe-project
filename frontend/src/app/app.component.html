@@ -2,20 +2,6 @@
   <app-header></app-header>
   <div class="container-fluid">
     <router-outlet></router-outlet>
-    <div *ngIf="showRickroll" class="rickroll-overlay" (click)="closeRickroll()">
-      <div class="rickroll-modal">
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-          title="Rick Astley - Never Gonna Give You Up"
-          frameborder="0"
-          allow="autoplay; encrypted-media"
-          allowfullscreen>
-        </iframe>
-        <p class="rickroll-caption">You've unlocked the secret cat cafe track 🎶</p>
-      </div>
-    </div>
   </div>
   <app-footer></app-footer>
 </div>

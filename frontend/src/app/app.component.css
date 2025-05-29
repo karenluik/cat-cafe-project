@@ -6,32 +6,3 @@
 
 
 
-.rickroll-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(255, 239, 239, 0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  cursor: pointer;
-  font-family: 'Courier New', Courier, monospace;
-}
-
-.rickroll-modal {
-  background-color: var(--pastel-green, #d4f7dc);
-  border: 4px dashed var(--pastel-pink, #fcd6e4);
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  text-align: center;
-}
-
-.rickroll-caption {
-  margin-top: 10px;
-  font-size: 1.2em;
-  color: #333;
-}
